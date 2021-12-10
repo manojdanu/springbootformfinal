@@ -23,4 +23,7 @@ public interface CustomerCrudRepo extends CrudRepository<CustomerEntity, Integer
 	@Query(value = "delete from customer where phone =:phone", nativeQuery = true)
 	public void deletebyphone(Long phone);
 
+	@Query(value = "select * from customer where phone =:phone", nativeQuery = true)
+	public List<CustomerEntity> checkDeleteError(Long phone);
+    
 }

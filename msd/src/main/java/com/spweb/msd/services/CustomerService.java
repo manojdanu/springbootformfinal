@@ -18,8 +18,8 @@ public class CustomerService {
 			customerDAO.saveData(customerEntity);	
 		}
 	
-		public void delete(CustomerEntity customerEntity ) {
-			customerDAO.deleteData(customerEntity);	
+		public  List<CustomerEntity> delete(CustomerEntity customerEntity ) {
+			return customerDAO.deleteData(customerEntity);	
 		}
 		public void update(CustomerEntity customerEntity ) {
 			customerDAO.updateData(customerEntity);	

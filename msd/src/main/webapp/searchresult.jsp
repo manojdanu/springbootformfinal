@@ -19,7 +19,10 @@ table, th, td {
 	border-collapse: collapse;
 	background-color: yellow;
 }
-}
+  .center {
+            text-align: center;
+        }
+
 
 </style>
 </head>
@@ -91,5 +94,6 @@ table, th, td {
 		</table>
 
 	</div>
+	<h6 class="center"><a href="/search">Search again</a></h6>
 </body>
 </html>

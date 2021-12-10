@@ -24,13 +24,42 @@
         .center {
             text-align: center;
         }
+        
+.blinking:hover {
+                animation: blinkingText 0.3s infinite;
+            }
+            @keyframes blinkingText {
+                0% {
+                    color: #FFFF00;
+                }
+
+                20% {
+                    color: #edf03e;
+                }
+
+                40% {
+                    color: #e64438;
+                }
+
+                60% {
+                    color: #fa0000;
+                }
+
+                80% {
+                    color: #00d9ff;
+                }
+
+                100% {
+                    color: #1519f3;
+                }
+            }
 
     </style>
 </head>
 
 <body class="container-fluid" style="background-color: rgb(153, 196, 180);">
     <div>
-        <nav class="navbar navbar-expand-lg navbar-light text-dark ">
+        <nav class="navbar navbar-expand-lg navbar-light text-dark nav-link">
             <a class="navbar-brand disabled" href="#">CUSTOMER FORM</a>
             <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"></button>
@@ -40,17 +69,16 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="/">SaveData</a>
-                        <a class="nav-item nav-link" href="/search">SearchData</a>
-                        <a class="nav-item nav-link" href="/update">UpdateData</a>
-                        <a class="nav-item nav-link" href="/delete">DeleteData</a>
-
+                     <div class="navbar-nav">
+                        <a class="nav-item nav-link blinking" href="/">SaveData</a>
+                        <a class="nav-item nav-link blinking" href="/search">SearchData</a>
+                        <a class="nav-item nav-link blinking" href="/update">UpdateData</a>
+                        <a class="nav-item nav-link blinking" href="/delete">DeleteData</a>
                     </div>
                 </div>
         </nav>
     </div>
-    <div class="container mt-3">
+    <div class="container mt-5 pt5">
         <form action="/save" method="post">
             <div class="form-group row bg-light text-dark">
                 <label for="name" class="col-sm-3 font-weight-bold col-form-label ">Full Name:</label>
@@ -63,7 +91,7 @@
                 <label for="custype" class="col-sm-2 font-weight-bold bg-light text-dark col-form-label">Customer
                     Type:</label>
                 <div class="col-sm-2">
-                    <select class="form-select" class="form-control pull-left" name="customer_type" required>
+                    <select class="form-select" class="form-control pull-left rounded-0" name="customer_type" required>
                         <option disabled>-Customer Type-</option>
                         <option value="None" selected>None</option>
                         <option value="Army">Army</option>
@@ -88,7 +116,7 @@
                 <label for="country"
                     class="col-sm-2 font-weight-bold text-dark bg-light col-form-label">Country:</label>
                 <div class="col-sm-2">
-                    <select id="dropdownCountry" class="form-control pull-left" name="country" required>
+                    <select id="dropdownCountry" class="form-control pull-left rounded-0" name="country" required>
                         <option selected>-Select Country-</option>
                         <c:forEach var="country" items="${countries }">
                             <option value="${country.id}">${country.name}</option>
@@ -97,12 +125,12 @@
                 </div>
                 <label for="custype" class="col-sm-2 font-weight-bold text-dark bg-light col-form-label">State:</label>
                 <div class="col-sm-2">
-                    <select id="dropdownState" class="form-control pull-left" name="state" required>
+                    <select id="dropdownState" class="form-control pull-left rounded-0" name="state" required>
                     </select>
                 </div>
                 <label for="custype" class="col-sm-2 font-weight-bold text-dark bg-light col-form-label">City:</label>
                 <div class="col-sm-2">
-                    <select id="dropdownCity" class="form-control pull-left " name="city" required> </select>
+                    <select id="dropdownCity" class="form-control pull-left rounded-0" name="city" required> </select>
                 </div>
                
             </div>
@@ -134,69 +162,69 @@
         </form>
     </div>
 <script type="text/javascript">
-	$(document).ready(function() {
-						$("#dropdownState").val($("#dropdownState option:first").val());
-						$('#dropdownCountry').on('change',
-										function() {
-											var countryId = $(this).val();
-											$.ajax({
-														type : 'GET',
-														url : '${pageContext.request.contextPath }/loadStatesByCountry/'
-																+ countryId,
-														success : function(
-																result) {
-															var result = JSON
-																	.parse(result);
-															var state = '';
-															state += '<option disabled selected="selected">--Select State--</option>';
-															for (var i = 0; i < result.length; i++) {
-																state += '<option value="' + result[i].id + '">'
-																		+ result[i].name
-																		+ '</option>';
-															}
-															$('#dropdownState')
-																	.html(state);
-															$("#dropdownState")
-																	.val(
-																			$(
-																					"#dropdownState option:first")
-																					.val());
-															$("#dropdownCity")
-																	.val(
-																			$(
-																					"#dropdownCity option:first")
-																					.val());
-														}
-													});
-										});
+    $(document).ready(function () {
+        $("#dropdownState").val($("#dropdownState option:first").val());
+        $('#dropdownCountry').on('change',
+            function () {
+                var countryId = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: '${pageContext.request.contextPath }/loadStatesByCountry/'
+                        + countryId,
+                    success: function (
+                        result) {
+                        var result = JSON
+                            .parse(result);
+                        var state = '';
+                        state += '<option disabled selected="selected">--Select State--</option>';
+                        for (var i = 0; i < result.length; i++) {
+                            state += '<option value="' + result[i].id + '">'
+                                + result[i].name
+                                + '</option>';
+                        }
+                        $('#dropdownState')
+                            .html(state);
+                        $("#dropdownState")
+                            .val(
+                                $(
+                                    "#dropdownState option:first")
+                                    .val());
+                        $("#dropdownCity")
+                            .val(
+                                $(
+                                    "#dropdownCity option:first")
+                                    .val());
+                    }
+                });
+            });
 
-						$('#dropdownState')
-								.on(
-										'change',
-										function() {
-											var stateId = $(this).val();
-											$
-													.ajax({
-														type : 'GET',
-														url : '${pageContext.request.contextPath }/loadCitiesByState/'
-																+ stateId,
-														success : function(
-																result) {
-															var result = JSON
-																	.parse(result);
-															var city = '';
-															city += '<option disabled selected="selected">--Select City--</option>';
-															for (var i = 0; i < result.length; i++) {
-																city += '<option value="' + result[i].id + '">'
-																		+ result[i].name
-																		+ '</option>';
-															}
-															$('#dropdownCity')
-																	.html(city);
-														}
-													});
-										});
-					});
+        $('#dropdownState')
+            .on(
+                'change',
+                function () {
+                    var stateId = $(this).val();
+                    $
+                        .ajax({
+                            type: 'GET',
+                            url: '${pageContext.request.contextPath }/loadCitiesByState/'
+                                + stateId,
+                            success: function (
+                                result) {
+                                var result = JSON
+                                    .parse(result);
+                                var city = '';
+                                city += '<option disabled selected="selected">--Select City--</option>';
+                                for (var i = 0; i < result.length; i++) {
+                                    city += '<option value="' + result[i].id + '">'
+                                        + result[i].name
+                                        + '</option>';
+                                }
+                                $('#dropdownCity')
+                                    .html(city);
+                            }
+                        });
+                });
+    });
 </script>
 </body>
 

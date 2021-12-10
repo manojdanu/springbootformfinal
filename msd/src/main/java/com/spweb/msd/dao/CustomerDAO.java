@@ -50,9 +50,13 @@ public class CustomerDAO {
 	}
 	
 	@Transactional
-	public void deleteData(CustomerEntity customerEntity) {
-		crudRepo.deletebyphone(customerEntity.getPhone());
-
+	public List<CustomerEntity> deleteData(CustomerEntity customerEntity) {
+		List<CustomerEntity> checkDeleteError = crudRepo.checkDeleteError(customerEntity.getPhone());
+		if(!checkDeleteError.isEmpty()){
+			  crudRepo.deletebyphone(customerEntity.getPhone());
+		}			
+		return checkDeleteError;
+		
 	}
 		
 	@Transactional

@@ -47,6 +47,7 @@ body {
 		</nav>
 	</div>
 	<h1 class="center mt-5">Data Updated Successfully</h1>
+	<h6 class="center"><a href="/update">update new data</a></h6>
 	<br>
 	<br>
 

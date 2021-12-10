@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Data Successfully Saved</title>
+<title>Error</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -15,7 +15,7 @@
 
 <style>
 body {
-	background-color: powderblue;
+	background-color: red;
 }
 
 .center {
@@ -23,7 +23,7 @@ body {
 }
 </style>
 </head>
-<body>
+<body >
 	<div>
 		<nav class="navbar navbar-expand-lg navbar-light text-white">
 			<a class="navbar-brand disabled" href="#">CUSTOMER FORM</a>
@@ -46,8 +46,8 @@ body {
 			</div>
 		</nav>
 	</div>
-	<h1 class="center mt-5">Data Successfully Saved</h1>
-	<h6 class="center"><a href="/">save new data</a></h6>
+	<h1 class="center mt-5">No Matching Record Found !</h1>
+	<h6 class="center"><a href="/delete">try again</a></h6>
 	<br>
 	<br>
 
